@@ -27,7 +27,6 @@ export default function AdminProduct() {
     const {register, handleSubmit, reset} = useForm();
 
     function addProduct(data){
-        const file = data.image[0];
         let fechaISO = data.fechaIngreso;
         if (data.fechaIngreso.includes("/")) {
             const fechaParts = data.fechaIngreso.split("/");
@@ -40,7 +39,7 @@ export default function AdminProduct() {
             price: data.price,
             category: data.category,
             fechaIngreso: fechaISO,
-            image: file,
+            image: data.image,
         };
         setProducts([...products, newProduct]);
         reset();

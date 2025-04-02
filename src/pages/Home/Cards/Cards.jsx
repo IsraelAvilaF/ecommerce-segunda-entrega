@@ -1,35 +1,35 @@
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function cards(product, addProduct) {
+export default function cards({ id, title, price, description, image, status, addProduct }) {
     return (
         <>
             <div className="upper-card">
                 <div className="product-status">
-                    {product.status}
+                    {status}
                 </div>
                 <div className="img">
                     <img
-                        alt={product.title}
-                        src={product.image}
+                        alt={title}
+                        src={image}
                     />
                 </div>
                 <div className="plus-cart">
-                    <button onClick={() => addProduct(product.id)}>
+                    <button onClick={() => addProduct(id)}>
                         <FontAwesomeIcon icon={faCartPlus} />
                     </button>
             </div>
             </div>
             <div className="bottom-card">
-                <h3>{product.title}</h3>
+                <h3>{title}</h3>
                 <div className="card-description">
                 <p>
-                    {product.description}
+                    {description}
                 </p>
                 </div>
                 <div className="price">
                     <p>
-                        {product.price}
+                        {price}
                     </p>
                 </div>
                 <a href="/pages/long-sleeve.html">Ver más</a>

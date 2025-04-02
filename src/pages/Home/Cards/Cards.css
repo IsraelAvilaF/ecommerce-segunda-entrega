@@ -114,19 +114,14 @@
 
 @media screen and (width > 768px) {
     .card{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
         gap: 30px;
-        margin-top: 70px;
-        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
 
         .single-box{
             background-color: var(--secondary-color);
             width: 380px;
-            display: flex;
-            flex-direction: column;
-            text-align: center;
+            margin: 0;
             font-size: 14px;
             color: var(--primary-color);
 

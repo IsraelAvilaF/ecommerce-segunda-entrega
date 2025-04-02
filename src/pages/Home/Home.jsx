@@ -84,10 +84,11 @@ export default function Home() {
                                 key={card.id}
                                 id={card.id}
                                 name={card.name}
-                                price={card.price}
+                                price={`S/.${card.price}`}
                                 description={card.description}
                                 image={card.image}
                                 category={card.category}
+                                status={card.status}
                                 addProduct={addProduct}
                             />))}
                     </div>

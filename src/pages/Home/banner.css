@@ -183,7 +183,7 @@
         top: 60px;
         display: flex;
         justify-content: center;
-        margin: 20px 0;
+        margin: 0 0 125px 0;
 
         .slider{
             border-radius: 20px;

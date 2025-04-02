@@ -26,17 +26,11 @@ export default function Product({product, deleteProduct}) {
             </td>
 
             <td className="image-cell">
-            {product.image instanceof File ? (
                 <img 
-                    src={URL.createObjectURL(product.image)} 
+                    src={product.image}
                     alt={product.title} 
-                    width="50" 
+                    width="60" 
                 />
-                ) : (
-                    <span>
-                        No image
-                    </span>
-                )}
             </td>
 
             <td className="tools-cell">
