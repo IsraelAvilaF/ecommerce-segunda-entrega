@@ -1,0 +1,147 @@
+:root{
+    --primary-color: #21324B;
+    --secondary-color: #78B9BA;
+    --background-color: #CE472F;
+    --text-color: #C6C5B4;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-header{
+    position: relative;
+}
+
+.main-title{
+    top: 0;
+}
+
+.tablas{
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    
+    .table-title{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+        
+        hr{
+            width: 600px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+    }
+
+    .btn {
+        display: flex;
+        gap: 15px;
+        justify-content: end;
+    
+        button{
+            font-family: "Nunito", sans-serif;
+            font-weight: 600;
+            background-color: var(--background-color);
+            padding: 5px;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+        }
+    }
+    
+    .table{
+        display: flex;
+        flex-grow: 2;
+
+        
+        .product-form{
+            display: flex;
+            margin: 20px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+
+            label{
+                display: block;
+                padding: 2px 0;
+                font-family: 'Nunito', sans-serif;
+            }
+
+            .input-group{
+                margin-top: 10px;
+                width: 300px;
+                
+                ::placeholder{
+                    font-family: 'Nunito', sans-serif;
+                }
+    
+                textarea{
+                    padding: 2px 5px;
+                }
+                input, select, textarea{
+                    font-family: 'Nunito', sans-serif;
+                    width: 100%;
+                }
+            }
+        }
+
+
+
+        .admin-products{
+            border-collapse: collapse;
+            margin: 16px;
+            border: 4px solid var(--primary-color);
+    
+            th{
+                padding: .5rem 1rem;
+                background-color: var(--primary-color);
+                color: white;
+                font-weight: 500;
+            }
+
+            tbody tr:nth-child(even){
+                background-color: var(--secondary-color);
+            }
+
+            tr>td{
+                padding: 8px;
+                font-weight: 400;
+                text-align: center;
+            }
+
+            .image-cell{
+                
+                .table-image{
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 8px;
+                }
+            }
+
+            .tools-cell{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .btn{
+                    background-color: var(--background-color);
+                    border: none;
+                    outline: none;
+                    padding: 6px;
+                    justify-content: center;
+                    cursor: pointer;
+                    color: white;
+                    border-radius: 6px;
+    
+                    &.btn-danger{
+                        background-color: var(--primary-color);
+                    }
+                }   
+            }
+        }
+    }
+}

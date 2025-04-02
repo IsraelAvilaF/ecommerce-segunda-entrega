@@ -1,0 +1,229 @@
+.card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 70px;
+    margin-bottom: 30px;
+
+    .single-box{
+        background-color: var(--secondary-color);
+        width: 380px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 14px;
+        color: var(--primary-color);
+
+        &:hover{
+            .upper-card{
+                .plus-cart{
+                    transform: translateY(0);
+                    opacity: 2;
+                    visibility: visible;
+                }
+            }
+        }
+
+        &:hover{
+            .upper-card{
+                .plus-cart{
+                    transform: translateY(0);
+                    opacity: 2;
+                    visibility: visible;
+                }
+            }
+        }
+
+        .upper-card{
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            
+
+            .img img{
+                width: 100%;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+            }
+
+            .product-status{
+                position: absolute;
+                border-radius: 2px;
+                padding: 4px 5px;
+                color: white;
+                background-color: var(--background-color);
+                top: 10px;
+                right: 10px;
+            }
+
+            .plus-cart{
+                position: absolute;
+                display: inline-block;
+                bottom: 20px;
+                left: 10px;
+                right: 10px;
+                transition: .9s;
+                transform: translateY(65px);
+                opacity: 0;
+                transition: background-color .25s ease-in-out, transform .4s ease-in-out, opacity .25s ease-in-out;
+
+                i{
+                    font-size: 35px;
+                    color: var(--primary-color);
+                    padding: 3px;
+                    background-color: var(--text-color);
+                }
+            }
+        }
+
+        .bottom-card{
+            padding: 20px;
+
+            h3{
+                font-size: 24px;
+                font-weight: 800;
+                padding: 10px;
+            }
+
+            .card-description{
+                font-size: 15px;
+            }
+
+            .price{
+                margin: 15px;
+                font-size: 20px;
+                font-weight: 600;
+                color: var(--primary-color)
+            }
+
+            a{
+                text-decoration: none;
+                margin: 10px;
+                padding: 5px;
+                background-color: var(--background-color);
+                color: white;
+                font-weight: 700;
+                font-size: 15px;
+                border-radius: 6px;
+            }
+        }
+    }
+}
+
+@media screen and (width > 768px) {
+    .card{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 70px;
+        margin-bottom: 30px;
+
+        .single-box{
+            background-color: var(--secondary-color);
+            width: 380px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            font-size: 14px;
+            color: var(--primary-color);
+
+            &:hover{
+                .upper-card{
+                    .plus-cart{
+                        transform: translateY(0);
+                        opacity: 2;
+                        visibility: visible;
+                    }
+                }
+            }
+
+            &:hover{
+                .upper-card{
+                    .plus-cart{
+                        transform: translateY(0);
+                        opacity: 2;
+                        visibility: visible;
+                    }
+                }
+            }
+
+            .upper-card{
+                display: flex;
+                position: relative;
+                overflow: hidden;
+                text-align: center;
+                
+
+                .img img{
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                }
+
+                .product-status{
+                    position: absolute;
+                    border-radius: 2px;
+                    padding: 4px 5px;
+                    color: white;
+                    background-color: var(--background-color);
+                    top: 10px;
+                    right: 10px;
+                }
+
+                .plus-cart{
+                    position: absolute;
+                    display: inline-block;
+                    bottom: 20px;
+                    left: 10px;
+                    right: 10px;
+                    transition: .9s;
+                    transform: translateY(65px);
+                    opacity: 0;
+                    transition: background-color .25s ease-in-out, transform .4s ease-in-out, opacity .25s ease-in-out;
+
+                    i{
+                        font-size: 35px;
+                        color: var(--primary-color);
+                        padding: 3px;
+                        background-color: var(--text-color);
+                    }
+                }
+            }
+
+            .bottom-card{
+                padding: 20px;
+
+                h3{
+                    font-size: 24px;
+                    font-weight: 800;
+                    padding: 10px;
+                }
+
+                .card-description{
+                    font-size: 15px;
+                }
+
+                .price{
+                    margin: 15px;
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: var(--primary-color)
+                }
+
+                a{
+                    text-decoration: none;
+                    margin: 10px;
+                    padding: 5px;
+                    background-color: var(--background-color);
+                    color: white;
+                    font-weight: 700;
+                    font-size: 15px;
+                    border-radius: 6px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,141 @@
+:root{
+    --primary-color: #21324B;
+    --secondary-color: #78B9BA;
+    --background-color: #CE472F;
+    --text-color: #C6C5B4;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-header{
+    position: relative;
+}
+
+.main-title{
+    top: 0;
+}
+
+.contact-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+
+    hr{
+        width: 300px;
+        font-size: 20px;
+        font-weight: 800;
+    }
+}
+
+.contacto{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    align-items: center;
+    
+    .contact-form{
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+
+        label{
+            display: block;
+            padding: 2px 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .input-group{
+            margin-top: 10px;
+            width: 300px;
+            
+            ::placeholder{
+                font-family: 'Nunito', sans-serif;
+            }
+
+            textarea{
+                padding: 2px 5px;
+            }
+            input, select, textarea{
+                font-family: 'Nunito', sans-serif;
+                width: 100%;
+            }
+        }
+
+        .contact-btn{
+            text-align: center;
+            padding: 20px;
+
+            .btn{
+                padding: 10px 18px;
+                background-color: var(--primary-color);
+                border: solid 1px #1a355c;
+                color: white;
+                border-radius: 4px;
+                cursor: pointer;
+                font-family: 'Nunito', sans-serif;
+                font-size: 15px;
+            }
+        }
+    }
+
+    .maps{
+        margin: 20px;
+        width: 350px;
+        height: 300px;
+        border: 10px solid var(--secondary-color);
+
+        iframe{
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+}
+
+@media screen and (width > 768px) {
+
+    .contacto{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .contact-form{
+            display: flex;
+            align-items: center;
+            width: 50%;
+            height: 500px;
+            margin: 15px 0;
+            margin-left: 100px;
+    
+            .input-group{
+                margin-top: 10px;
+                width: 500px;
+                
+                ::placeholder{
+                    font-family: 'Nunito', sans-serif;
+                }
+    
+                textarea{
+                    padding: 2px 5px;
+                }
+                input, select, textarea{
+                    font-family: 'Nunito', sans-serif;
+                    width: 100%;
+                }
+            }
+        }
+
+        .maps{
+            margin-bottom: 100px;
+            margin-right: 100px;
+            width: 50%;
+            height: 400px;
+        }
+    }
+}

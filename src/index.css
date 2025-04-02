@@ -1,0 +1,24 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+:root{
+  --primary-color: #21324B;
+  --secondary-color: #78B9BA;
+  --background-color: #CE472F;
+  --text-color: #C6C5B4;
+}
+
+body{
+  font-family: "Nunito", sans-serif;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

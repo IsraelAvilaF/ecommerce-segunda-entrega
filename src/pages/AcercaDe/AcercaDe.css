@@ -1,0 +1,139 @@
+:root{
+    --primary-color: #21324B;
+    --secondary-color: #78B9BA;
+    --background-color: #CE472F;
+    --text-color: #C6C5B4;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-header{
+    position: relative;
+}
+
+.mision-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+
+    hr{
+        width: 300px;
+        font-size: 20px;
+        font-weight: 800;
+    }
+}
+
+.mision-text{
+    text-align: center;
+    padding: 10px;
+}
+
+.us-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .texto{
+        padding: 5px;
+        text-align: center;
+    }
+
+    .israel{
+        text-align: center;
+    }
+    .foto{
+        aspect-ratio: 1/1;
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        box-shadow: 0px 0px 29px 5px rgba(0,0,0,0.51);
+        -webkit-box-shadow: 0px 0px 29px 5px rgba(0,0,0,0.51);
+        -moz-box-shadow: 0px 0px 29px 5px rgba(0,0,0,0.51);
+    }
+
+    .social-network{
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+    }
+}
+
+@media screen and (width > 768px) {
+    .main-title{
+        display: flex;
+        position: relative;
+        top: 0;
+    }
+
+    article{
+        flex-grow: 2;
+    }
+
+    .mision{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+
+        .mision-title{
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        .mision-text{
+            text-align: center;
+            width: 800px;
+            font-size: 20px;
+
+        }
+    }
+
+    .integrantes{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .mision-title{
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        .us-box{
+            display: flex;
+            flex-direction: row;
+
+            .foto{
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                margin: 20px 0;
+                box-shadow: 0px 0px 29px 5px rgba(0,0,0,0.51);
+                -webkit-box-shadow: 0px 0px 29px 5px rgba(0,0,0,0.51);
+                -moz-box-shadow: 0px 0px 29px 5px rgba(0,0,0,0.51);
+            }
+            
+            .israel{
+                display: flex;
+                gap: 10px;
+                flex-direction: column;
+                align-items: center;
+                width: 500px;
+                margin: 10px;
+
+                .texto{
+                    justify-content: center;
+                    width: 350px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
