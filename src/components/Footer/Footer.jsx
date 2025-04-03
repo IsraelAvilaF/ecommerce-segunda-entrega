@@ -8,17 +8,17 @@ export default function Footer() {
     return (
         <footer className="main-footer">
             <section className="social-network">
-                <div>
-                <FontAwesomeIcon icon={faFacebook} />
-                FACEBOOK
+                <div className="redes">
+                    <FontAwesomeIcon className="icon" icon={faFacebook}/>
+                    FACEBOOK
                 </div>
-                <div>
-                <FontAwesomeIcon icon={faInstagram} />
-                INSTAGRAM
+                <div className="redes">
+                    <FontAwesomeIcon className="icon" icon={faInstagram} />
+                    INSTAGRAM
                 </div>
-                <div>
-                <FontAwesomeIcon icon={faYoutube} />
-                YOUTUBE
+                <div className="redes">
+                    <FontAwesomeIcon className="icon" icon={faYoutube} />
+                    YOUTUBE
                 </div>
             </section>
             <section className="logo-footer">
@@ -26,16 +26,16 @@ export default function Footer() {
             </section>
             <section className="info-footer">
                 <div>
-                <FontAwesomeIcon icon={faLocationArrow} />
-                Migueletes 1268, CABA
+                <FontAwesomeIcon className="icon" icon={faLocationArrow} />
+                    Migueletes 1268, CABA
                 </div>
                 <div>
-                <FontAwesomeIcon icon={faPhone}/>
-                (011) 2788-4581
+                <FontAwesomeIcon className="icon" icon={faPhone}/>
+                    (011) 2788-4581
                 </div>
                 <div>
-                <FontAwesomeIcon icon={faEnvelope} />
-                burnitactivewear@gmail.com
+                <FontAwesomeIcon className="icon" icon={faEnvelope} />
+                    burnitactivewear@gmail.com
                 </div>
                 <div>© 2024, BURN IT ACTIVEWEAR</div>
             </section>

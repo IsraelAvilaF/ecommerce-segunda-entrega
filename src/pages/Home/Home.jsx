@@ -83,7 +83,7 @@ export default function Home() {
                             <Card
                                 key={card.id}
                                 id={card.id}
-                                name={card.name}
+                                title={card.title}
                                 price={`S/.${card.price}`}
                                 description={card.description}
                                 image={card.image}

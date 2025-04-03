@@ -7,7 +7,8 @@ export default function ProductsList({products, deleteProduct}) {
                 {products.map((product) => (
                             <Product    key={product.id}
                                         product={product}
-                                        deleteProduct={deleteProduct}/>
+                                        deleteProduct={deleteProduct}
+                            />
                         )
                     )
                 }

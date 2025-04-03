@@ -44,13 +44,19 @@ body{
         width: 200px;
     }
 
-    .social-network i{
-        padding: 5px;
-    }
+    
 
     .info-footer div{
         margin: 4px;
         text-align: center;
+    }
+
+    .icon{
+        padding: 0 10px;
+    }
+
+    .redes{
+        margin: 5px 0;
     }
 }
 
@@ -76,12 +82,5 @@ body{
             width: 200px;
         }
     
-        .social-network i{
-            padding: 5px;
-        }
-    
-        .info-footer div{
-            margin: 4px;
-        }
     }
 }
