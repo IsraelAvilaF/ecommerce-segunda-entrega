@@ -9,10 +9,28 @@ const URL ="https://67cb831e3395520e6af58918.mockapi.io/";
 export default function AdminProduct() {
 
     const [products, setProducts] = useState([]);
+    const [updateProduct, setUpdateProduct] = useState(null);
+    const {register, handleSubmit, reset, setValue} = useForm();
 
     useEffect(() => {
         getProducts();
     }, []);
+
+    useEffect(() => {
+        if(updateProduct) {
+            setValue("title", updateProduct.title);
+            setValue("description", updateProduct.description);
+            setValue("price", updateProduct.price);
+            setValue("category", updateProduct.category);
+        } else {
+            reset();
+        }
+
+    }, [updateProduct, setValue, reset]);
+
+    async function editProduct(product){
+        setUpdateProduct(product);
+    }
 
     async function getProducts(){
         try {
@@ -24,25 +42,54 @@ export default function AdminProduct() {
         }
     }
 
-    const {register, handleSubmit, reset} = useForm();
 
-    function addProduct(data){
-        let fechaISO = data.fechaIngreso;
-        if (data.fechaIngreso.includes("/")) {
-            const fechaParts = data.fechaIngreso.split("/");
-            fechaISO = `${fechaParts[2]}-${fechaParts[1]}-${fechaParts[0]}`;
+    async function addProduct(data){
+        try{
+            if(updateProduct){
+                const id = updateProduct.id;
+
+                const productToUpdate = {
+                    title: data.title,
+                    description: data.description,
+                    price: data.price,
+                    category: data.category,
+                }
+
+                const response = await axios.put(`${URL}/products/${id}`, productToUpdate);
+
+                const productCopy = [...products];
+                const index = productCopy.findIndex(product => product.id === id);
+                productCopy[index] = response.data;
+
+                setProducts(productCopy);
+                setUpdateProduct(null);
+
+                // getProducts();
+
+            } else{
+                let fechaISO = data.fechaIngreso;
+                if (data.fechaIngreso.includes("/")) {
+                    const fechaParts = data.fechaIngreso.split("/");
+                    fechaISO = `${fechaParts[2]}-${fechaParts[1]}-${fechaParts[0]}`;
+                }
+                const newProduct = {
+                    id: products.length + 1,
+                    title: data.title,
+                    description: data.description,
+                    price: data.price,
+                    category: data.category,
+                    fechaIngreso: fechaISO,
+                    image: data.image,
+                };
+                const response = await axios.post(`${URL}/products`, newProduct);
+                setProducts([...products, response.data]);
+                reset();
+            }
         }
-        const newProduct = {
-            id: products.length + 1,
-            title: data.title,
-            description: data.description,
-            price: data.price,
-            category: data.category,
-            fechaIngreso: fechaISO,
-            image: data.image,
-        };
-        setProducts([...products, newProduct]);
-        reset();
+        catch (error) {
+            console.error(error);
+            alert("Ocurrió un error al agregar el producto");
+        }
     }
 
     async function deleteProduct(id){
@@ -143,7 +190,7 @@ export default function AdminProduct() {
 
                         <div className="btn">
                             <button type="submit">
-                                CREAR
+                                {updateProduct ? "Actualizar Producto" : "CREAR"}
                             </button>
                         </div>
                     </form>
@@ -164,6 +211,7 @@ export default function AdminProduct() {
                             <ProductsList   
                                 products={products}
                                 deleteProduct={deleteProduct}
+                                editProduct={editProduct}
                             />
                     </tbody>
                 </table>

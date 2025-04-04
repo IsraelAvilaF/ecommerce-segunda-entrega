@@ -1,7 +1,7 @@
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Product({product, deleteProduct}) {
+export default function Product({product, deleteProduct, editProduct}) {
     return (
         <tr>
 
@@ -34,10 +34,18 @@ export default function Product({product, deleteProduct}) {
             </td>
 
             <td className="tools-cell">
-                <button className="btn">
+                <button 
+                    className="btn button-xs" 
+                    title="Editar" 
+                    onClick={() => editProduct(product)}
+                >
                     <FontAwesomeIcon icon={faPencil}/>
                 </button>
-                <button className="btn button-xs btn-danger" onClick={() => deleteProduct(product.id)}>
+                <button 
+                    className="btn button-xs btn-danger" 
+                    title="Eliminar"
+                    onClick={() => deleteProduct(product.id)}
+                >
                     <FontAwesomeIcon icon={faTrash}/>
                 </button>
             </td>

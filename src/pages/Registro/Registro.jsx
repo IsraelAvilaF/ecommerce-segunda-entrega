@@ -181,7 +181,7 @@ export default function Registro() {
                         alt="Agrega foto de perfil"
                         id="profile-pic"
                         name="foto-perfil"
-                        type="file"
+                        type="url"
                     />
                 </div>
 
