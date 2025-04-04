@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ProductsList from "../../components/ProductsList/ProductsList";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const URL ="https://67cb831e3395520e6af58918.mockapi.io/";
 
@@ -42,7 +43,6 @@ export default function AdminProduct() {
         }
     }
 
-
     async function addProduct(data){
         try{
             if(updateProduct){
@@ -63,8 +63,7 @@ export default function AdminProduct() {
 
                 setProducts(productCopy);
                 setUpdateProduct(null);
-
-                // getProducts();
+                Swal.fire("Producto actualizado", "El producto se actualizó correctamente", "success");
 
             } else{
                 let fechaISO = data.fechaIngreso;
@@ -84,8 +83,11 @@ export default function AdminProduct() {
                 const response = await axios.post(`${URL}/products`, newProduct);
                 setProducts([...products, response.data]);
                 reset();
+                Swal.fire("Producto creado", "El producto se creó correctamente", "success");
             }
+
         }
+
         catch (error) {
             console.error(error);
             alert("Ocurrió un error al agregar el producto");
@@ -94,11 +96,20 @@ export default function AdminProduct() {
 
     async function deleteProduct(id){
         try {
-            const confirmDelete = window.confirm("¿Estás seguro de eliminar este producto?");
-            if (confirmDelete){
-                await axios.delete(`${URL}/products/${id}`);
-                getProducts();
-            };
+                Swal.fire({
+                    title: "¿Estás seguro de eliminar este producto?",
+                    text: "No podrás recuperar este producto después de eliminarlo.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Eliminar",
+                    cancelButtonText: "Cancelar",
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        await axios.delete(`${URL}/products/${id}`);
+                        getProducts();
+                        Swal.fire("Producto eliminado", "El producto se eliminó correctamente", "success");
+                    }
+                });
         } catch (error) {
             console.error(error);
             alert("Ocurrió un error al eliminar el producto");
