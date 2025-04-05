@@ -45,8 +45,9 @@ export default function Cards({ title, price, description, image, status, id}) {
                             </p>
                         </div>
                         <a 
+                            target='_blank'
                             className='link' 
-                            href="#" 
+                            href="/" 
                             onClick={detailProduct}
                         >
                             Ver más

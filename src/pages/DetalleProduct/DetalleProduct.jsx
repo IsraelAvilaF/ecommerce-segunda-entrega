@@ -8,19 +8,19 @@ const URL ="https://67cb831e3395520e6af58918.mockapi.io/";
 export default function DetalleProduct() {
     
     const { id } = useParams();
-        const [detail, setDetail] = useState({});
+        const [product, setProduct] = useState({});
 
         useEffect(() => {
-            async function getDetailById() {
+            async function getProductById() {
                 try {
-                    const response = await axios.get(`${URL}/Productos/${id}`);
-                    setDetail(response.data);
+                    const response = await axios.get(`${URL}/products/${id}`);
+                    setProduct(response.data);
                 } catch (error) {
                     console.warn(error);
                 }
             }
     
-            if (id) getDetailById();
+            if (id) getProductById();
         }, [id]);
 
 
@@ -31,17 +31,17 @@ export default function DetalleProduct() {
             <section className="product-detail">
                 <div className="product-img">
                     <img 
-                        alt={detail.title}
-                        src={detail.image}
+                        alt={product.title}
+                        src={product.image}
                     />
                 </div>
                 <div className="description-container">
-                    <h1>{detail.title}</h1>
+                    <h1>{product.title}</h1>
                     <hr />
-                    <p>{detail.price}</p>
+                    <p>S/.{product.price}</p>
                     <hr />
                     <span className="short-text">
-                        {detail.description}
+                        {product.description}
                     </span>
                 </div>
             </section>
@@ -52,7 +52,7 @@ export default function DetalleProduct() {
                 <div className="features">
                 <ul>
                     <li>
-                    {detail.description}
+                    {product.description}
                     </li>
                 </ul>
                 </div>

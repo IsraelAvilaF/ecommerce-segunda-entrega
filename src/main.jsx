@@ -6,11 +6,11 @@ import { BrowserRouter } from 'react-router'
 import OrderProvider from './context/OrderContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <OrderProvider>
-      <StrictMode>
-        <App />
-      </StrictMode>
-    </OrderProvider>
-  </BrowserRouter>
+  <OrderProvider>
+    <BrowserRouter>
+        <StrictMode>
+          <App />
+        </StrictMode>
+    </BrowserRouter>
+  </OrderProvider>
 )

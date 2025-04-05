@@ -1,10 +1,10 @@
-import { useOrder } from '../../context/OrderContext'
+import { useOrder } from '../../context/OrderContext';
 import '../AdminProduct/AdminProduct.css';
 import React from 'react'
 
 export default function Order() {
 
-    const { cart , total } = useOrder()
+    const { cart , total } = useOrder();
 
     return (
         <>
@@ -39,7 +39,7 @@ export default function Order() {
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colSpan="4">TOTAL S/.{total}</td>
+                            <td colSpan={5}>TOTAL S/.{total}</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -50,5 +50,5 @@ export default function Order() {
                 </div>
             </div>
         </>
-    )
+    );
 }

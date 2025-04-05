@@ -8,6 +8,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Order from './pages/Order/Order'
 import OrderModal from './context/OrderModal'
+import DetalleProduct from './pages/DetalleProduct/DetalleProduct'
 
 const URL = `https://67cb831e3395520e6af58918.mockapi.io/`
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/Contacto" element={<Contacto/>}/>
           <Route path="/Registro" element={<Registro/>}/>
           <Route path="/Order" element={<Order/>}/>
+          <Route path="/DetalleProduct/:id" element={<DetalleProduct />} />
         </Routes>
         <Footer/>
       </main>

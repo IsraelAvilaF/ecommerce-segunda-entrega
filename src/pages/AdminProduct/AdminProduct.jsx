@@ -212,8 +212,8 @@ export default function AdminProduct() {
                         <th>Nombre</th>
                         <th>Descripción</th>
                         <th>Precio</th>
-                        <th>Fecha de Ingreso</th>
                         <th>Categoría</th>
+                        <th>Fecha de Ingreso</th>
                         <th>Imagen</th>
                         <th>Acciones</th>
                         </tr>

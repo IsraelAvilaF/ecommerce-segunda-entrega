@@ -1,5 +1,4 @@
 import { useOrder } from "./OrderContext";
-import './OrderContext'
 import Order from "../pages/Order/Order";
 import "./OrderModal.css";
 import React from "react";

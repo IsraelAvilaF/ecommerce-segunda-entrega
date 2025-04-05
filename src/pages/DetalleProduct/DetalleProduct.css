@@ -11,10 +11,6 @@ body{
     justify-content: space-between;
 }
 
-.main-header{
-    position: relative;
-}
-
 .product-detail{
     flex-grow: 2;
     display: flex;
@@ -96,9 +92,6 @@ body{
 }
 
 @media screen and (width > 768px) {
-    .main-title{
-        top: 0;
-    }
 
     .product-detail{
         display: flex;
