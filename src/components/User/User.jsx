@@ -1,7 +1,7 @@
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function User({user, deleteUsers}) {
+export default function User({user, deleteUsers, editUsers}) {
     return (
         <tr>
 
@@ -11,10 +11,6 @@ export default function User({user, deleteUsers}) {
 
             <td className="email-cell">
                 {user.email}
-            </td>
-
-            <td className="password-cell">
-                {(user.password)}
             </td>
 
             <td className="fechaNacimiento-cell">
@@ -34,10 +30,18 @@ export default function User({user, deleteUsers}) {
             </td>
 
             <td className="tools-cell">
-                <button className="btn">
+                <button 
+                    className="btn button-xs"
+                    title="Editar"
+                    onClick={() => editUsers(user)}
+                >
                     <FontAwesomeIcon icon={faPencil}/>
                 </button>
-                <button className="btn button-xs btn-danger" onClick={() => deleteUsers(user.id)}>
+                <button 
+                    className="btn button-xs btn-danger"
+                    title="Eliminar" 
+                    onClick={() => deleteUsers(user.id)}
+                >
                     <FontAwesomeIcon icon={faTrash}/>
                 </button>
             </td>

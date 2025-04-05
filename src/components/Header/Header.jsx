@@ -1,18 +1,22 @@
 import { faShoppingBag, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import "./Header.css"
+import { useOrder } from "../../context/OrderContext";
 
 export default function Header() {
+
+    const {count, toggleCart} = useOrder()
+
     return (
         <header className="main-header">
             <input className="input-burger" id="burger" type="checkbox" />
             <label className="burger-container" htmlFor="burger">
-            <img
-                alt="Menú Logo Burnit"
-                className="burger"
-                src="images/LOGO-BURN-IT-2024-redondo.png"
-            />
+                    <img
+                        alt="Menú Logo Burnit"
+                        className="burger"
+                        src="images/LOGO-BURN-IT-2024-redondo.png"
+                    />
             </label>
             <nav className="main-nav">
                 <ul className="nav-list">
@@ -41,6 +45,11 @@ export default function Header() {
                             ADMIN PRODUCTS
                         </NavLink>
                     </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/Order">
+                            ORDER
+                        </NavLink>
+                    </li>
                 </ul>
             </nav>
             <div className="main-title">
@@ -52,11 +61,14 @@ export default function Header() {
                 </h1>
             </div>
             <div className="user-info">
-                <div className="profile-container">
+                <Link className="icon-container" to="/Registro">
                     <FontAwesomeIcon icon={faUser}/>
-                </div>
-                <div className="cart-container">
+                </Link>
+                <div className="icon-container" onClick={() => toggleCart()}>
                     <FontAwesomeIcon icon={faShoppingBag}/>
+                    <span className="cart-count">
+                        {count}
+                    </span>
                 </div>
             </div>
             

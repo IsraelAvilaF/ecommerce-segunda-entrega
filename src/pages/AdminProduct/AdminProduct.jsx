@@ -66,25 +66,25 @@ export default function AdminProduct() {
                 Swal.fire("Producto actualizado", "El producto se actualizó correctamente", "success");
 
             } else{
-                let fechaISO = data.fechaIngreso;
-                if (data.fechaIngreso.includes("/")) {
-                    const fechaParts = data.fechaIngreso.split("/");
-                    fechaISO = `${fechaParts[2]}-${fechaParts[1]}-${fechaParts[0]}`;
-                }
-                const newProduct = {
-                    id: products.length + 1,
-                    title: data.title,
-                    description: data.description,
-                    price: data.price,
-                    category: data.category,
-                    fechaIngreso: fechaISO,
-                    image: data.image,
-                };
-                const response = await axios.post(`${URL}/products`, newProduct);
-                setProducts([...products, response.data]);
-                reset();
-                Swal.fire("Producto creado", "El producto se creó correctamente", "success");
+            let fechaISO = data.fechaIngreso;
+            if (data.fechaIngreso.includes("/")) {
+                const fechaParts = data.fechaIngreso.split("/");
+                fechaISO = `${fechaParts[2]}-${fechaParts[1]}-${fechaParts[0]}`;
             }
+            const newProduct = {
+                id: products.length + 1,
+                title: data.title,
+                description: data.description,
+                price: data.price,
+                category: data.category,
+                fechaIngreso: fechaISO,
+                image: data.image,
+            };
+            const response = await axios.post(`${URL}/products`, newProduct);
+            setProducts([...products, response.data]);
+            reset();
+            Swal.fire("Producto creado", "El producto se creó correctamente", "success");
+        }
 
         }
 

@@ -1,0 +1,157 @@
+:root{
+    --primary-color: #21324B;
+    --secondary-color: #78B9BA;
+    --background-color: #CE472F;
+    --text-color: #C6C5B4;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-header{
+    position: relative;
+}
+
+.product-detail{
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    
+    .product-img{
+        max-height: 410px;
+        border-bottom: 10px solid var(--primary-color);
+
+        img{
+            height: 400px;
+            width: 100vw;
+        }
+    }
+
+    .description-container{
+        display: flex;
+        flex-direction: column;
+        
+        h1{
+            display: flex;
+            justify-content: flex-end;            
+            padding: 5px 10px;
+        }
+
+        hr{
+            background-color: var(--background-color);
+            padding: 2px;
+            width: 400px;
+            margin: 0 20px;
+        }
+
+        p{
+            display: flex;
+            justify-content: flex-end;            
+            padding: 0 10px;
+            font-size: 18px;
+        }
+
+        .short-text{
+            text-align: center;
+        }
+    }
+
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    hr{
+        background-color: #21324B;
+        padding: 2px;
+        width: 200px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    h2{
+        text-align: center;
+        padding-bottom: 4px;
+    }
+
+    .features{
+        padding: 10px;
+
+        ul{
+            list-style-type: none;
+
+            li{
+                padding: 5px;
+            }
+        }
+    }
+
+
+}
+
+@media screen and (width > 768px) {
+    .main-title{
+        top: 0;
+    }
+
+    .product-detail{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .product-img{
+            max-height: 410px;
+            border-bottom: 10px solid var(--primary-color);
+            border-right: 10px solid var(--primary-color);
+            border-left: 10px solid var(--primary-color);
+            
+    
+            img{
+                height: 400px;
+                width: 50vw;
+            }
+        }
+
+        .description-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h1{
+                text-align: center;
+                font-size: 50px;
+            }
+
+            p{
+                font-weight: 600;
+                font-size: 30px;
+            }
+
+            .short-text{
+                padding: 20px;
+                font-size: 25px;
+            }
+        }
+
+    }
+}
+
+.description{
+    margin: 25px;
+
+    h2{
+        font-size: 30px;
+    }
+
+    .features{
+        font-size: 20px;
+    }
+
+
+}

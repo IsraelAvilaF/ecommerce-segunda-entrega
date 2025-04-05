@@ -1,18 +1,37 @@
 import './Registro.css';
-import { useForm } from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
 import UsersList from "../../components/UsersList/UsersList";
-import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const URL ="https://67cb831e3395520e6af58918.mockapi.io/";
 
 export default function Registro() {
 
     const [users, setUsers] = useState([]);
+    const [updateUsers, setUpdateUsers] = useState(null);
+    const {register, handleSubmit, reset, setValue} = useForm();
 
     useEffect(() => {
         getUsers();
     }, []);
+
+    useEffect(() => {
+        if(updateUsers) {
+            setValue("name", updateUsers.name);
+            setValue("email", updateUsers.email);
+            setValue("bday", updateUsers.bday);
+            setValue("province", updateUsers.province);
+        } else {
+            reset();
+        }
+    
+    }, [updateUsers, setValue, reset]);
+
+    async function editUsers(user){
+        setUpdateUsers(user);
+    }
 
     async function getUsers(){
         try {
@@ -24,38 +43,73 @@ export default function Registro() {
         }
     }
 
-    const {register, handleSubmit, reset} = useForm();
+    async function addUsers(data){
+        try{
+            if(updateUsers){
+                const id = updateUsers.id;
 
-    function addUsers(data){
-        let fechaISO = data.bdate;
-        if (data.bdate.includes("/")) {
-            const fechaParts = data.bdate.split("/");
-            fechaISO = `${fechaParts[2]}-${fechaParts[1]}-${fechaParts[0]}`;
+                const userToUpdate = {
+                    name: data.name,
+                    email: data.email,
+                    bday: data.bday,
+                    province: data.province,
+                }
+
+                const response = await axios.put(`${URL}/users/${id}`, userToUpdate);
+
+                const userCopy = [...users];
+                const index = userCopy.findIndex(user => user.id === id);
+                userCopy[index] = response.data;
+
+                setUsers(userCopy);
+                setUpdateUsers(null);
+                Swal.fire("Usuario actualizado", "El usuario se actualizó correctamente", "success");
+            } else{
+                let fechaISO = data.bdate;
+                if (data.bdate.includes("/")) {
+                    const fechaParts = data.bdate.split("/");
+                    fechaISO = `${fechaParts[2]}-${fechaParts[1]}-${fechaParts[0]}`;
+                }
+                const newUser = {
+                    id: users.length + 1,
+                    name: data.name,
+                    email: data.email,
+                    province: data.province,
+                    bdate: fechaISO,
+                    profile: data.profile,
+                };
+                const response = await axios.post(`${URL}/users`, newUser);
+                setUsers([...users, response.data]);
+                reset();
+                Swal.fire("Usuario creado", "El usuario se creó correctamente", "success");
+            }
         }
-        const newUser = {
-            id: users.length + 1,
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            province: data.province,
-            bdate: fechaISO,
-            profile: data.profile,
-        };
-        setUsers([...users, newUser]);
-        reset();
+        catch (error) {
+            console.error(error);
+            alert("Ocurrió un error al agregar el usuario");
+        }
     }
 
     async function deleteUsers(id){
         try {
-            const confirmDelete = window.confirm("¿Estás seguro de eliminar este usuario?");
-            if (confirmDelete){
-                await axios.delete(`${URL}/users/${id}`);
-                getUsers();
-            };
-        } catch (error) {
-            console.error(error);
-            alert("Ocurrió un error al eliminar el usuario");
-        }
+            Swal.fire({
+                title: "¿Estás seguro de eliminar este usuario?",
+                text: "No podrás recuperar este usuario después de eliminarlo.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Eliminar",
+                cancelButtonText: "Cancelar",
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await axios.delete(`${URL}/users/${id}`);
+                    getUsers();
+                    Swal.fire("Usuario eliminado", "El usuario se eliminó correctamente", "success");
+                }
+            });
+    } catch (error) {
+        console.error(error);
+        alert("Ocurrió un error al eliminar el usuario");
+    }
     }
 
     return (
@@ -69,12 +123,12 @@ export default function Registro() {
                 <div className="input-group">
                     <label htmlFor="Name">Nombre</label>
                     <input
-                        {...register("nombre")}
+                        {...register("name")}
                         autoFocus
                         id="Name"
                         maxLength="30"
                         minLength="7"
-                        name="nombre"
+                        name="name"
                         placeholder="Israel Avila"
                         required
                         type="text"
@@ -185,10 +239,10 @@ export default function Registro() {
                     />
                 </div>
 
-                <div className="register-btn">
-                <button className="btn" type="submit">
-                    Registrarse
-                </button>
+                <div className="btn">
+                    <button type="submit">
+                        {updateUsers ? "Actualizar Usuario" : "REGISTRAR"}
+                    </button>
                 </div>
             </form>
             <table border="1" className="admin-products">
@@ -196,7 +250,6 @@ export default function Registro() {
                     <tr>
                     <th>Nombre</th>
                     <th>Email</th>
-                    <th>Contraseña</th>
                     <th>Fecha de Nacimiento</th>
                     <th>Provincia</th>
                     <th>Foto de Perfil</th>
@@ -206,6 +259,7 @@ export default function Registro() {
                         <UsersList   
                             users={users}
                             deleteUsers={deleteUsers}
+                            editUsers={editUsers}
                         />
                 </tbody>
             </table>

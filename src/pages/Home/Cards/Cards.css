@@ -7,8 +7,8 @@
     margin-bottom: 30px;
 
     .single-box{
-        background-color: var(--secondary-color);
         width: 380px;
+        background-color: var(--secondary-color);
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -42,7 +42,7 @@
             text-align: center;
             
 
-            .img img{
+            .img{
                 width: 100%;
                 aspect-ratio: 1/1;
                 object-fit: cover;
@@ -69,7 +69,7 @@
                 opacity: 0;
                 transition: background-color .25s ease-in-out, transform .4s ease-in-out, opacity .25s ease-in-out;
 
-                i{
+                .cart-icon{
                     font-size: 35px;
                     color: var(--primary-color);
                     padding: 3px;
@@ -98,7 +98,7 @@
                 color: var(--primary-color)
             }
 
-            a{
+            .link{
                 text-decoration: none;
                 margin: 10px;
                 padding: 5px;
@@ -112,16 +112,24 @@
     }
 }
 
-@media screen and (width > 768px) {
+@media screen and (min-width > 768px) {
+
+    body{
+        justify-content: space-between;
+    }
+
     .card{
-        gap: 30px;
         display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
         justify-content: center;
 
         .single-box{
             background-color: var(--secondary-color);
             width: 380px;
-            margin: 0;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
             font-size: 14px;
             color: var(--primary-color);
 
@@ -152,7 +160,7 @@
                 text-align: center;
                 
 
-                .img img{
+                .img{
                     width: 100%;
                     aspect-ratio: 1/1;
                     object-fit: cover;
@@ -179,7 +187,7 @@
                     opacity: 0;
                     transition: background-color .25s ease-in-out, transform .4s ease-in-out, opacity .25s ease-in-out;
 
-                    i{
+                    .cart-icon{
                         font-size: 35px;
                         color: var(--primary-color);
                         padding: 3px;
@@ -208,7 +216,7 @@
                     color: var(--primary-color)
                 }
 
-                a{
+                .link{
                     text-decoration: none;
                     margin: 10px;
                     padding: 5px;
