@@ -104,9 +104,24 @@ body{
         .icon-container{
             color: white;
             font-size: 30px;
-            font-weight: 100;
+            font-weight: 800;
             cursor: pointer;
             margin: 10px 25px 10px 0;
+
+            .cart-count{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 7px;
+                right: 15px;
+                width: 25px;
+                height: 25px;
+                background-color: red;
+                color: white;
+                border-radius: 50%;
+                font-size: 0.75rem;
+            }
         }
     }
 }
@@ -151,27 +166,7 @@ body{
             height: 60px;
 
             .icon-container{
-                color: white;
                 font-size: 35px;
-                font-weight: 100;
-                cursor: pointer;
-                margin: 10px 25px 10px 0;
-
-                .cart-count{
-
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    position: absolute;
-                    top: 7px;
-                    right: 15px;
-                    width: 25px;
-                    height: 25px;
-                    background-color: red;
-                    color: white;
-                    border-radius: 50%;
-                    font-size: 0.75rem;
-                }
             }
         }
     }

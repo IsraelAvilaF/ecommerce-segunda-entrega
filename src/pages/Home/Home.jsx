@@ -1,8 +1,6 @@
 import {faMotorcycle, faRotate, faTruckFront } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './banner.css'
-import './servicePanel.css'
-import './Cards/Cards.css'
 import './Home.css'
 import Card from './Cards/Cards';
 import axios from "axios";
@@ -77,24 +75,20 @@ export default function Home() {
                 </div>
                 </div>
             </section>
-            <>
-                <div className="card">
-                    <div className="single-box">
-                        {cards.map((card) => (
-                            <Card
-                                key={card.id}
-                                id={card.id}
-                                title={card.title}
-                                price={`S/.${card.price}`}
-                                description={card.description}
-                                image={card.image}
-                                category={card.category}
-                                status={card.status}
-                                addProduct={addProduct}
-                            />))}
-                    </div>
-                </div>
-            </>
+            <article className="card">
+                {cards.map((card) => (
+                    <Card
+                        key={card.id}
+                        id={card.id}
+                        title={card.title}
+                        price={`S/.${card.price}`}
+                        description={card.description}
+                        image={card.image}
+                        category={card.category}
+                        status={card.status}
+                        addProduct={addProduct}
+                    />))}
+            </article>
             <section className="services-panel">
                 <div className="panel-box">
                 <div className="service">
