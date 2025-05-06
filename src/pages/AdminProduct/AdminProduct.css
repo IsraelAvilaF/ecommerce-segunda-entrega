@@ -37,7 +37,7 @@ body{
         }
     }
 
-    .btn {
+    .btn-contenedor {
         display: flex;
         gap: 15px;
         justify-content: end;
@@ -51,6 +51,7 @@ body{
             border-radius: 8px;
             color: white;
             cursor: pointer;
+            border: none;
         }
     }
     
@@ -139,26 +140,30 @@ body{
                 font-weight: 400;
             }
 
-            .tools-cell{
+            .tools-cell {
+                display: flex;
+                gap: 8px;
+                justify-content: center;
+                align-items: center;
                 
-                .icon-container{
+                .btn {
+                    background-color: var(--background-color);
+                    border: none !important;
+                    outline: none !important;
+                    padding: 6px;
+                    border-radius: 6px;
+                    color: white;
+                    cursor: pointer;
                     display: flex;
-        
-                    .btn{
-                        background-color: var(--background-color);
-                        border: none;
-                        outline: none;
-                        padding: 6px;
-                        justify-content: center;
-                        cursor: pointer;
-                        min-width: 24px;
-                        color: white;
-                        border-radius: 6px;
-        
-                        &.btn-danger{
-                            background-color: var(--primary-color);
-                        }
-                    }
+                    align-items: center;
+                    justify-content: center;
+                    width: 32px;
+                    height: 32px;
+                    box-shadow: none !important;
+                }
+                
+                .btn-danger {
+                    background-color: var(--primary-color);
                 }
             }
         }

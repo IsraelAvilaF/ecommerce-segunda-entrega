@@ -38,8 +38,9 @@ function OrderProvider({ children }) {
         let total = 0;
 
         cart.forEach((item) => {
+            const precio = parseFloat(item.price);
             contador += item.quantity;
-            total += item.price * item.quantity;
+            total += isNaN(precio) ? 0 : precio * item.quantity;
         })
 
         setCount(contador);
@@ -51,42 +52,41 @@ function OrderProvider({ children }) {
         setIsOpen(!isOpen)
     }
 
-    function addProduct(product) {
-        const addProduct = cart.find((item) => item.id === product.id)
+    function addCartProduct(product) {
+        const existingProduct = cart.find((item) => item.id === product.id);
     
-        if (!addProduct) {
-            const newProduct = {
-                ...product,
-                quantity: 1
-            }
-
-            setCart([...cart, newProduct])
-
+        if (!existingProduct) {
+            const newProduct = { ...product, quantity: 1 };
+            setCart([...cart, newProduct]);
         } else {
-            addProduct.quantity += 1
-            setCart([...cart])
-            
+            const updatedCart = cart.map((item) =>
+                item.id === product.id
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            );
+            setCart(updatedCart);
         }
     }
 
     function aumentarCantidad(product) {
-
-        const addProduct = cart.find((item) => item.id === product.id)
-
-        addProduct.quantity += 1
-        setCart([...cart])
+        const updatedCart = cart.map((item) =>
+            item.id === product.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+        );
+        setCart(updatedCart);
     }
 
     function disminuirCantidad(product) {
-
-        const addProduct = cart.find((item) => item.id === product.id)
-
-        console.log("Cantidad actual:", addProduct)
-
-        if (addProduct.quantity <= 1) { cart.splice(0, 1) } else {
-            addProduct.quantity -= 1
-        }
-        setCart([...cart])
+        const updatedCart = cart
+            .map((item) =>
+                item.id === product.id
+                    ? { ...item, quantity: item.quantity - 1 }
+                    : item
+            )
+            .filter((item) => item.quantity > 0);
+    
+        setCart(updatedCart);
     }
 
     return (
@@ -100,7 +100,7 @@ function OrderProvider({ children }) {
                 aumentarCantidad,
                 toggleCart,
                 vaciarCarrito,
-                addProduct
+                addCartProduct
             }}
         >
             {children}

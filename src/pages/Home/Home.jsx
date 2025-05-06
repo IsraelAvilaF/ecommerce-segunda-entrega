@@ -6,12 +6,15 @@ import Card from './Cards/Cards';
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { useOrder } from "../../context/OrderContext";
 
 const URL ="https://67cb831e3395520e6af58918.mockapi.io/";
 
 export default function Home() {
 
     const [cards, setProducts] = useState([]);
+
+    const { addCartProduct } = useOrder();
 
     useEffect(() => {
         getProducts();
@@ -81,12 +84,13 @@ export default function Home() {
                         key={card.id}
                         id={card.id}
                         title={card.title}
-                        price={`S/.${card.price}`}
+                        price={card.price}
                         description={card.description}
                         image={card.image}
                         category={card.category}
                         status={card.status}
                         addProduct={addProduct}
+                        addCartProduct={() => addCartProduct(card)}
                     />))}
             </article>
             <section className="services-panel">

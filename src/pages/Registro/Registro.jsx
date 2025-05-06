@@ -21,7 +21,7 @@ export default function Registro() {
         if(updateUsers) {
             setValue("name", updateUsers.name);
             setValue("email", updateUsers.email);
-            setValue("bday", updateUsers.bday);
+            setValue("bdate", updateUsers.bdate);
             setValue("province", updateUsers.province);
         } else {
             reset();
@@ -51,7 +51,7 @@ export default function Registro() {
                 const userToUpdate = {
                     name: data.name,
                     email: data.email,
-                    bday: data.bday,
+                    bdate: data.bdate,
                     province: data.province,
                 }
 
@@ -129,7 +129,6 @@ export default function Registro() {
                                 id="Name"
                                 maxLength="30"
                                 minLength="7"
-                                name="name"
                                 placeholder="Israel Avila"
                                 required
                                 type="text"
@@ -143,7 +142,6 @@ export default function Registro() {
                                 id="email"
                                 maxLength="30"
                                 minLength="1"
-                                name="correo-electronico"
                                 pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$"
                                 placeholder="ejemplo@email.com"
                                 required
@@ -157,7 +155,6 @@ export default function Registro() {
                                 id="password"
                                 maxLength="20"
                                 minLength="6"
-                                name="contraseña"
                                 placeholder="********"
                                 required
                                 type="password"
@@ -170,7 +167,6 @@ export default function Registro() {
                                 id="re-password"
                                 maxLength="20"
                                 minLength="6"
-                                name="r-contraseña"
                                 placeholder="********"
                                 required
                                 type="password"
@@ -180,9 +176,8 @@ export default function Registro() {
                         <div className="input-group">
                             <label htmlFor="b-date">Fecha de Nacimiento</label>
                             <input 
-                                {...register("fechaNacimiento")}
-                                id="b-date" 
-                                name="fecha-nacimiento" 
+                                {...register("bdate")}
+                                id="b-date"
                                 required 
                                 type="date" 
                             />
@@ -190,8 +185,8 @@ export default function Registro() {
 
                         <div className="input-group">
                             <label htmlFor="province">Seleccione una provincia:</label>
-                            <select id="province" name="provincia" required>
-                                <option value="">--Seleccione--</option>
+                            <select id="province" required>
+                                <option value="" disabled>--Seleccione--</option>
                                 <option value="Buenos Aires">Buenos Aires</option>
                                 <option value="CABA">CABA</option>
                                 <option value="Catamarca">Catamarca</option>
@@ -225,7 +220,6 @@ export default function Registro() {
                                 defaultValue="Escribe aqui"
                                 id="obs"
                                 maxLength="300"
-                                name="observaciones"
                                 rows="5"
                             />
                         </div>
@@ -235,7 +229,6 @@ export default function Registro() {
                             <input
                                 alt="Agrega foto de perfil"
                                 id="profile-pic"
-                                name="foto-perfil"
                                 type="url"
                             />
                         </div>
@@ -256,6 +249,7 @@ export default function Registro() {
                         <th>Fecha de Nacimiento</th>
                         <th>Provincia</th>
                         <th>Foto de Perfil</th>
+                        <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -154,15 +154,18 @@ export default function AdminProduct() {
                         </div>
 
                         <div className="input-group">
-                        <label htmlFor="category">Categoria</label>
-                        <textarea
-                            {...register("category")}
-                            id="category"
-                            maxLength="30"
-                            placeholder="Conjunto Deportivo"
-                            type="text"
-                            required
-                        />
+                            <label htmlFor="category">Categoría</label>
+                            <select
+                                {...register("category", { required: true })}
+                                id="category"
+                                defaultValue=""
+                            >
+                                <option value="" disabled>Seleccionar categoría</option>
+                                <option value="Ropa Deportiva">Ropa Deportiva</option>
+                                <option value="Accesorios Deportivos">Accesorios Deportivos</option>
+                                <option value="Shorts Deportivos">Shorts Deportivos</option>
+                                <option value="Remeras Deportivas">Remeras Deportivas</option>
+                            </select>
                         </div>
 
                         <div className="input-group">
@@ -199,7 +202,7 @@ export default function AdminProduct() {
                             />
                         </div>
 
-                        <div className="btn">
+                        <div className="btn-contenedor">
                             <button type="submit">
                                 {updateProduct ? "Actualizar Producto" : "CREAR"}
                             </button>

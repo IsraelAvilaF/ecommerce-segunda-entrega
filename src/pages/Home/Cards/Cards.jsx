@@ -4,7 +4,17 @@ import { useOrder } from '../../../context/OrderContext'
 
 export default function Cards({ title, price, description, image, status, id}) {
 
-    const {addProduct} = useOrder();
+    const { addCartProduct } = useOrder();
+
+    // const product = {
+    //     id,
+    //     title,
+    //     price,
+    //     description,
+    //     image,
+    //     status,
+    // };
+
     const detailProduct = () => {
         window.location.href = `/DetalleProduct/${id}`;
     };
@@ -23,7 +33,15 @@ export default function Cards({ title, price, description, image, status, id}) {
                 </div>
                 <div className="plus-cart">
                     <button
-                        onClick={() => addProduct(product => product.id === id ? {...product, quantity: product.quantity + 1} : product)}
+                        onClick={() =>
+                            addCartProduct({
+                                id,
+                                title,
+                                image,
+                                price: Number(price),
+                                quantity: 1
+                            })
+                        }
                     >
                     <FontAwesomeIcon className='cart-icon' icon={faCartPlus} />
                     </button>
@@ -38,7 +56,7 @@ export default function Cards({ title, price, description, image, status, id}) {
                 </div>
                 <div className="price">
                     <p>
-                        {price}
+                        S/.{price}
                     </p>
                 </div>
                 <a 

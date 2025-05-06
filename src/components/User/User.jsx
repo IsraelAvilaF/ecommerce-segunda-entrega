@@ -14,7 +14,7 @@ export default function User({user, deleteUsers, editUsers}) {
             </td>
 
             <td className="fechaNacimiento-cell">
-                {new Date(user.bday).toLocaleDateString('es-PE')}
+                {new Date(user.bdate).toLocaleDateString('es-PE')}
             </td>
 
             <td className="province-cell">

@@ -9,6 +9,8 @@ export default function OrderModal() {
 
     const { isOpen, toggleCart, disminuirCantidad, aumentarCantidad, cart, total} = useOrder();
 
+    console.log("Cart", cart);
+
     if(!isOpen) return null;
 
     function pintarModalCarrito(){
@@ -47,7 +49,7 @@ export default function OrderModal() {
                 <div className="modal-title" >
                     <h2>CARRITO</h2>
                 </div>
-                {cart.lenght === 0 &&(
+                {cart.length === 0 &&(
                     <div className="empty-cart">
                         <p>El carrito está vacio</p>
                     </div>
