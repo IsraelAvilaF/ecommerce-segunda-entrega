@@ -169,23 +169,23 @@ body{
                 font-size: 35px;
             }
         }
-    }
-
-    .main-title{
-        background-color: var(--primary-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 60px;
-        height: 60px;
-        width: max-content;
-
-            img{
-                width: 200px;
-            }
         
+        .main-title{
+            background-color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 60px;
+            height: 60px;
+            width: max-content;
+    
+                img{
+                    width: 200px;
+                }
+        }
     }
+
 }

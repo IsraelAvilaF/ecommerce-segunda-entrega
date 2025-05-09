@@ -4,13 +4,16 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
 import OrderProvider from './context/OrderContext.jsx'
+import { UserProvider } from './context/UserContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <StrictMode>
+    <UserProvider>
       <OrderProvider>
-          <App />
+        <StrictMode>
+              <App />
+        </StrictMode>
       </OrderProvider>
-    </StrictMode>
+    </UserProvider>
   </BrowserRouter>
 )

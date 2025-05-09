@@ -7,6 +7,7 @@ import { useOrder } from "../../context/OrderContext";
 export default function Header() {
 
     const {count, toggleCart} = useOrder()
+    const {user, logout} = useOrder()
 
     return (
         <header className="main-header">
@@ -25,11 +26,20 @@ export default function Header() {
                             PRINCIPAL
                         </NavLink>
                     </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/Registro">
-                            REGISTRO
-                        </NavLink>
-                    </li>
+                    {user ?.role === 'admin' &&
+                        (<li className="nav-item">
+                            <NavLink className="nav-link" to="/Registro">
+                                REGISTRO
+                            </NavLink>
+                        </li>)
+                    }
+                    {user ?.role === 'admin' &&(
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/AdminProduct">
+                                ADMIN PRODUCTS
+                            </NavLink>
+                        </li>)
+                    }
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/Contacto">
                             CONTACTO
@@ -41,15 +51,24 @@ export default function Header() {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/AdminProduct">
-                            ADMIN PRODUCTS
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
                         <NavLink className="nav-link" to="/Order">
                             ORDER
                         </NavLink>
                     </li>
+                    { user  ?
+                            (<li className="nav-item">
+                                <button onClick={() => logout()} className="nav-link" href="#">
+                                    LOGOUT
+                                </button>
+                            </li>)
+                            : (
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/Login">
+                                        LOGIN
+                                    </NavLink>
+                                </li>
+                            )
+                    }
                 </ul>
             </nav>
             <div className="main-title">
