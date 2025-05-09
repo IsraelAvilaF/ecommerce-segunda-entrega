@@ -1,5 +1,6 @@
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FILES_URL } from "../../../config/env.config";
 
 export default function User({user, deleteUsers, editUsers}) {
     return (
@@ -23,7 +24,7 @@ export default function User({user, deleteUsers, editUsers}) {
 
             <td className="image-cell">
                 <img 
-                    src={user.profile}
+                    src={`${FILES_URL}/users/${user.image}`}
                     alt={user.name}
                     width="60" 
                 />

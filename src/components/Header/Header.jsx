@@ -26,13 +26,11 @@ export default function Header() {
                             PRINCIPAL
                         </NavLink>
                     </li>
-                    {user ?.role === 'admin' &&
-                        (<li className="nav-item">
-                            <NavLink className="nav-link" to="/Registro">
-                                REGISTRO
-                            </NavLink>
-                        </li>)
-                    }
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/Registro">
+                            REGISTRO
+                        </NavLink>
+                    </li>
                     {user ?.role === 'admin' &&(
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/AdminProduct">

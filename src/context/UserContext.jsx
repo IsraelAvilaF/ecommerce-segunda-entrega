@@ -1,8 +1,8 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { URL } from "../../config/env.config";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import { URL } from "../../config/env.config";
 
 const UserContext = createContext();
 

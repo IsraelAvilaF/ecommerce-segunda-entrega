@@ -4,7 +4,7 @@ import ProductsList from "../../components/ProductsList/ProductsList";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { URL } from '../../config/env.config.jsx';
+import { URL } from '../../../config/env.config';
 
 export default function AdminProduct() {
     const [products, setProducts] = useState([]);

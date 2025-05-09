@@ -2,8 +2,7 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import './DetalleProduct.css'
-import { URL } from '../../config/env.config.jsx';
-import { FILES_URL } from '../../../config/env.config';
+import { FILES_URL, URL } from '../../../config/env.config';
 
 
 export default function DetalleProduct() {

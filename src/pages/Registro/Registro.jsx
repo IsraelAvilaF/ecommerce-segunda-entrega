@@ -4,8 +4,7 @@ import UsersList from "../../components/UsersList/UsersList";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-
-const URL ="https://67cb831e3395520e6af58918.mockapi.io/";
+import { URL } from '../../../config/env.config';
 
 export default function Registro() {
 
@@ -45,39 +44,46 @@ export default function Registro() {
 
     async function addUsers(data){
         try{
+            const formData = new FormData();
+
+            formData.append('name', data.name);
+            formData.append('email', data.email);
+            formData.append('bdate', data.bdate);
+            formData.append('province', data.province);
+            formData.append('image', data.image[0]);
+            formData.append('password', data.password);
+
             if(updateUsers){
-                const id = updateUsers.id;
+                const id = updateUsers._id;
 
-                const userToUpdate = {
-                    name: data.name,
-                    email: data.email,
-                    bdate: data.bdate,
-                    province: data.province,
-                }
-
-                const response = await axios.put(`${URL}/users/${id}`, userToUpdate);
+                const response = await axios.put(`${URL}/users/${id}`, formData);
 
                 const userCopy = [...users];
-                const index = userCopy.findIndex(user => user.id === id);
+                const index = userCopy.findIndex(user => user._id === id);
                 userCopy[index] = response.data;
 
                 setUsers(userCopy);
                 setUpdateUsers(null);
                 Swal.fire("Usuario actualizado", "El usuario se actualizó correctamente", "success");
             } else{
-                let fechaISO = data.bdate;
-                if (data.bdate.includes("/")) {
-                    const fechaParts = data.bdate.split("/");
+                let fecha = data.bdate;
+                let fechaISO = fecha;
+                if (fecha.includes("/")) {
+                    const fechaParts = fecha.split("/");
                     fechaISO = `${fechaParts[2]}-${fechaParts[1]}-${fechaParts[0]}`;
                 }
+                const formData = new FormData();
+
                 const newUser = {
-                    id: users.length + 1,
-                    name: data.name,
-                    email: data.email,
-                    province: data.province,
-                    bdate: fechaISO,
-                    profile: data.profile,
+                    _id: users._id,
+                    name: formData.append('name', data.name),
+                    email: formData.append('email', data.email),
+                    password: formData.append('password', data.password),
+                    image: formData.append('image', data.image[0]),
+                    province: formData.append('province', data.province),
+                    bdate: formData.append('bdate', fechaISO),
                 };
+                
                 const response = await axios.post(`${URL}/users`, newUser);
                 setUsers([...users, response.data]);
                 reset();
@@ -90,7 +96,7 @@ export default function Registro() {
         }
     }
 
-    async function deleteUsers(id){
+    async function deleteUsers(_id){
         try {
             Swal.fire({
                 title: "¿Estás seguro de eliminar este usuario?",
@@ -101,7 +107,7 @@ export default function Registro() {
                 cancelButtonText: "Cancelar",
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    await axios.delete(`${URL}/users/${id}`);
+                    await axios.delete(`${URL}/users/${_id}`);
                     getUsers();
                     Swal.fire("Usuario eliminado", "El usuario se eliminó correctamente", "success");
                 }
@@ -126,7 +132,7 @@ export default function Registro() {
                             <input
                                 {...register("name")}
                                 autoFocus
-                                id="Name"
+                                id="name"
                                 maxLength="30"
                                 minLength="7"
                                 placeholder="Israel Avila"
@@ -152,9 +158,10 @@ export default function Registro() {
                         <div className="input-group">
                             <label htmlFor="password">Contraseña</label>
                             <input
+                            {...register("password")}
                                 id="password"
                                 maxLength="20"
-                                minLength="6"
+                                minLength="4"
                                 placeholder="********"
                                 required
                                 type="password"
@@ -166,7 +173,7 @@ export default function Registro() {
                             <input
                                 id="re-password"
                                 maxLength="20"
-                                minLength="6"
+                                minLength="4"
                                 placeholder="********"
                                 required
                                 type="password"
@@ -178,7 +185,6 @@ export default function Registro() {
                             <input 
                                 {...register("bdate")}
                                 id="b-date"
-                                required 
                                 type="date" 
                             />
                         </div>
@@ -217,7 +223,7 @@ export default function Registro() {
                         <div className="input-group">
                             <label htmlFor="obs">Observaciones</label>
                             <textarea
-                                defaultValue="Escribe aqui"
+                                placeholder="Escribe aqui"
                                 id="obs"
                                 maxLength="300"
                                 rows="5"
@@ -227,9 +233,12 @@ export default function Registro() {
                         <div className="input-group">
                             <label htmlFor="profile-pic">Foto de Perfil</label>
                             <input
-                                alt="Agrega foto de perfil"
+                                {...register("image")}
                                 id="profile-pic"
-                                type="url"
+                                alt="Agrega foto del producto"
+                                type="file"
+                                accept="image/*"
+                                required
                             />
                         </div>
 
@@ -246,7 +255,6 @@ export default function Registro() {
                         <tr>
                         <th>Nombre</th>
                         <th>Email</th>
-                        <th>Fecha de Nacimiento</th>
                         <th>Provincia</th>
                         <th>Foto de Perfil</th>
                         <th>Acciones</th>
