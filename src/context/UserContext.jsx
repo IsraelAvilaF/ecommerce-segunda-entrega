@@ -18,9 +18,9 @@ export function UserProvider({ children }) {
     useEffect(() => {
 
         user ? localStorage.setItem('user', JSON.stringify(user))
-             : localStorage.removeItem('user');
+                : localStorage.removeItem('user');
         token ? localStorage.setItem('token', token)
-              : localStorage.removeItem('token');
+                : localStorage.removeItem('token');
     }, [user, token]);
 
     async function login(data) {
