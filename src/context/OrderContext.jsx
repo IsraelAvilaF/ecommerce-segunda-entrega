@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const OrderContext = createContext();
@@ -89,6 +90,17 @@ function OrderProvider({ children }) {
         setCart(updatedCart);
     }
 
+    async function submitirCarrito() {
+        try {
+            const response = await axios.get(`${URL}/orders`);
+            console.log(response.data);
+        } catch (error) {
+            console.error("Error al enviar el carrito:", error);
+            alert("Ocurrió un error al obtener la orden");
+        }
+    }
+
+
     return (
         <OrderContext.Provider 
             value={{
@@ -100,6 +112,7 @@ function OrderProvider({ children }) {
                 aumentarCantidad,
                 toggleCart,
                 vaciarCarrito,
+                submitirCarrito,
                 addCartProduct
             }}
         >

@@ -4,11 +4,9 @@ import ProductsList from "../../components/ProductsList/ProductsList";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-
-const URL ="https://67cb831e3395520e6af58918.mockapi.io/";
+import { URL } from '../../config/env.config.jsx';
 
 export default function AdminProduct() {
-
     const [products, setProducts] = useState([]);
     const [updateProduct, setUpdateProduct] = useState(null);
     const {register, handleSubmit, reset, setValue} = useForm();
@@ -45,20 +43,39 @@ export default function AdminProduct() {
 
     async function addProduct(data){
         try{
+
+            const formData = new FormData();
+            
+            formData.append('title', data.title);
+            formData.append('description', data.description);
+            formData.append('price', data.price);
+            formData.append('category', data.category);
+            formData.append("image", data.image[0]);
+            formData.append('fechaIngreso', data.fechaIngreso);
+
             if(updateProduct){
-                const id = updateProduct.id;
+                const _id = updateProduct._id;
 
-                const productToUpdate = {
-                    title: data.title,
-                    description: data.description,
-                    price: data.price,
-                    category: data.category,
-                }
+                // const productToUpdate = {
+                //     title: data.title,
+                //     description: data.description,
+                //     price: data.price,
+                //     category: data.category,
+                // }
 
-                const response = await axios.put(`${URL}/products/${id}`, productToUpdate);
+                // const formData = new FormData();
+            
+                // formData.append('title', data.title);
+                // formData.append('description', data.description);
+                // formData.append('price', data.price);
+                // formData.append('category', data.category);
+                // formData.append("image", data.image[0]);
+                // formData.append('fechaIngreso', data.fechaIngreso);
+
+                const response = await axios.put(`${URL}/products/${_id}`, FormData);
 
                 const productCopy = [...products];
-                const index = productCopy.findIndex(product => product.id === id);
+                const index = productCopy.findIndex(product => product._id === _id);
                 productCopy[index] = response.data;
 
                 setProducts(productCopy);
@@ -66,19 +83,19 @@ export default function AdminProduct() {
                 Swal.fire("Producto actualizado", "El producto se actualizó correctamente", "success");
 
             } else{
-            let fechaISO = data.fechaIngreso;
-            if (data.fechaIngreso.includes("/")) {
-                const fechaParts = data.fechaIngreso.split("/");
+            let fechaISO = formData.append('fechaIngreso', data.fechaIngreso);
+            if (formData.append('fechaIngreso', data.fechaIngreso).includes("/")) {
+                const fechaParts = formData.append('fechaIngreso', data.fechaIngreso).split("/");
                 fechaISO = `${fechaParts[2]}-${fechaParts[1]}-${fechaParts[0]}`;
             }
             const newProduct = {
-                id: products.length + 1,
-                title: data.title,
-                description: data.description,
-                price: data.price,
-                category: data.category,
+                _id: products.length + 1,
+                title: formData.append('title', data.title),
+                description: formData.append('description', data.description),
+                price: formData.append('price', data.price),
+                category: formData.append('category', data.category),
                 fechaIngreso: fechaISO,
-                image: data.image,
+                image: formData.append("image", data.image[0]),
             };
             const response = await axios.post(`${URL}/products`, newProduct);
             setProducts([...products, response.data]);
@@ -94,7 +111,7 @@ export default function AdminProduct() {
         }
     }
 
-    async function deleteProduct(id){
+    async function deleteProduct(_id){
         try {
                 Swal.fire({
                     title: "¿Estás seguro de eliminar este producto?",
@@ -105,7 +122,7 @@ export default function AdminProduct() {
                     cancelButtonText: "Cancelar",
                 }).then(async (result) => {
                     if (result.isConfirmed) {
-                        await axios.delete(`${URL}/products/${id}`);
+                        await axios.delete(`${URL}/products/${_id}`);
                         getProducts();
                         Swal.fire("Producto eliminado", "El producto se eliminó correctamente", "success");
                     }
@@ -198,6 +215,7 @@ export default function AdminProduct() {
                                 id="product-pic"
                                 alt="Agrega foto del producto"
                                 type="file"
+                                accept="image/*"
                                 required
                             />
                         </div>

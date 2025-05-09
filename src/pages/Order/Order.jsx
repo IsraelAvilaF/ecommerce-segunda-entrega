@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function Order() {
 
-    const { cart , total } = useOrder();
+    const { cart , total, vaciarCarrito, submitirCarrito } = useOrder();
 
     return (
         <>
@@ -42,8 +42,8 @@ export default function Order() {
                 </table>
 
                 <div className="order-buttons">
-                    <button className="button">Finalizar compra</button>
-                    <button className="button">Vaciar carrito</button>
+                    <button className="button" onClick={submitirCarrito}>Finalizar compra</button>
+                    <button className="button" onClick={vaciarCarrito}>Vaciar carrito</button>
                 </div>
             </div>
         </>

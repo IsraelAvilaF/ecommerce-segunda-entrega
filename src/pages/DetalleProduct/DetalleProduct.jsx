@@ -2,37 +2,41 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import './DetalleProduct.css'
+import { URL } from '../../config/env.config.jsx';
+import { FILES_URL } from '../../../config/env.config';
 
-const URL ="https://67cb831e3395520e6af58918.mockapi.io/";
 
 export default function DetalleProduct() {
     
-    const { id } = useParams();
-        const [product, setProduct] = useState({});
+    const { _id } = useParams();
+    const [product, setProduct] = useState([]);
 
         useEffect(() => {
             async function getProductById() {
                 try {
-                    const response = await axios.get(`${URL}/products/${id}`);
-                    setProduct(response.data);
+                    const response = await axios.get(`${URL}/products/${_id}`);
+                    const productos = response.data.products;
+                    setProduct(productos);
+
                 } catch (error) {
                     console.warn(error);
                 }
             }
     
-            if (id) getProductById();
-        }, [id]);
+            if (_id) getProductById();
+        }, [_id]);
 
 
     return (
         
+
 
         <main className="detalleProducto">
             <section className="product-detail">
                 <div className="product-img">
                     <img 
                         alt={product.title}
-                        src={product.image}
+                        src={`${FILES_URL}/products/${product.image}`}
                     />
                 </div>
                 <div className="description-container">

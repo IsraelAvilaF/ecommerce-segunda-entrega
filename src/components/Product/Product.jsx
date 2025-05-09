@@ -1,7 +1,9 @@
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FILES_URL } from "../../../config/env.config";
 
 export default function Product({product, deleteProduct, editProduct}) {
+
     return (
         <tr>
 
@@ -27,7 +29,7 @@ export default function Product({product, deleteProduct, editProduct}) {
 
             <td className="image-cell">
                 <img 
-                    src={product.image}
+                    src={`${FILES_URL}/products/${product.image}`}
                     alt={product.title} 
                     width="60" 
                 />
@@ -44,7 +46,7 @@ export default function Product({product, deleteProduct, editProduct}) {
                 <button 
                     className="btn button-xs btn-danger" 
                     title="Eliminar"
-                    onClick={() => deleteProduct(product.id)}
+                    onClick={() => deleteProduct(product._id)}
                 >
                     <FontAwesomeIcon icon={faTrash}/>
                 </button>
